@@ -1,20 +1,29 @@
-﻿/* Задача 41: Пользователь вводит с клавиатуры M чисел. 
-Посчитайте, сколько чисел больше 0 ввёл пользователь.
+﻿/* Задача 43: Напишите программу, которая найдёт точку пересечения двух прямых, 
+заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; 
 
-0, 7, 8, -2, -2 -> 2
-1, -7, 567, 89, 223-> 3        */
+значения b1, k1, b2 и k2 задаются пользователем.
 
-string[] numbers = Console.ReadLine()!.Split(' ');
-int[] array = new int[numbers.Length];
+b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; -0,5)        */
 
-for (int i = 0; i < numbers.Length; i++)
+double b1, k1;
+double b2, k2;
+
+Console.Write($"Введите координаты прямой b1: ");
+double.TryParse(Console.ReadLine()!, out b1);
+Console.Write($"Введите координаты прямой k1: ");
+double.TryParse(Console.ReadLine()!, out k1);
+Console.Write($"Введите координаты прямой b2: ");
+double.TryParse(Console.ReadLine()!, out b2);
+Console.Write($"Введите координаты прямой k2: ");
+double.TryParse(Console.ReadLine()!, out k2);
+
+
+if (k1 != k2)
 {
-    int.TryParse(numbers[i], out array[i]);
-    Console.Write($"{array[i]} ");
-}
-int k = 0;
-foreach (var i in array)
-    if (i > 0)
+    double x = (b2 - b1) / (k1 - k2);
+    double y = k1 * x + b1;
 
-        k++;
-Console.Write($" -> {k} чисел больше 0");
+    Console.Write($"{x};{y}");
+}
+else
+    Console.WriteLine($"Данные две прямые не пересекаются");
